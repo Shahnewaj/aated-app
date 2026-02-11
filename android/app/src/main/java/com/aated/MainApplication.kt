@@ -1,4 +1,4 @@
-package com.aated
+package com.aated.app
 
 import android.app.Application
 import com.facebook.react.PackageList

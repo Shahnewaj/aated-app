@@ -1,0 +1,16 @@
+export const RouteMap = {
+  AuthStack: 'AuthStack',
+  AppStack: 'AppStack',
+  TabStack: 'TabStack',
+  Home: 'Home',
+  Signin: 'Signin',
+  Signup: 'Signup',
+  Profile: 'Profile',
+  Settings: 'Settings',
+  Notifications: 'Notifications',
+  About: 'About',
+  TermsOfService: 'TermsOfService',
+  PrivacyPolicy: 'PrivacyPolicy',
+  Member: 'Member',
+  Committee: 'Committee',
+};

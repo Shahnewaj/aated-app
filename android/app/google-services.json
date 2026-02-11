@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "39356335921",
+    "project_id": "aated-b9429",
+    "storage_bucket": "aated-b9429.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39356335921:android:09f2f21e0b3208dc971210",
+        "android_client_info": {
+          "package_name": "com.aated.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCYCrrkrzRGGOmO0ZyGzgGfTFksJGbPn9M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
