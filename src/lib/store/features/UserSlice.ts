@@ -1,17 +1,35 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-const initialState = {
+export interface UserAuth {
+  id?: number;
+  role?: string;
+  accessToken?: string;
+  refreshToken?: string;
+}
+
+interface UserState {
+  user: UserAuth;
+}
+
+const initialState: UserState = {
   user: {},
-} as any;
+};
 
 const userSlice = createSlice({
   name: 'User',
   initialState,
   reducers: {
-    appSetUser: (state, action) => {
+    // Maps from API response: { access, refresh, role, id }
+    appSetUser: (state, action: PayloadAction<any>) => {
+      const payload = action.payload.data;
       state.user = {
         ...state.user,
-        ...action.payload,
+        id: payload.id ?? state.user.id,
+        role: payload.role ?? state.user.role,
+        accessToken:
+          payload.access ?? payload.accessToken ?? state.user.accessToken,
+        refreshToken:
+          payload.refresh ?? payload.refreshToken ?? state.user.refreshToken,
       };
     },
     appSetLogout: state => {
@@ -20,6 +38,6 @@ const userSlice = createSlice({
   },
 });
 
-export const {appSetUser, appSetLogout} = userSlice.actions;
+export const { appSetUser, appSetLogout } = userSlice.actions;
 
 export default userSlice.reducer;

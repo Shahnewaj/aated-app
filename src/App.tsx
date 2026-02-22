@@ -8,7 +8,7 @@ import AppNavigation from './navigation/AppNavigation';
 
 const App = () => {
   if (__DEV__) {
-    // require('../ReactotronConfig');
+    require('../ReactotronConfig');
   }
   return (
     <GestureHandlerRootView style={styles.root}>

@@ -1,8 +1,21 @@
-import {selectedApiBaseUrl, selectedS3Url} from './ServerConfig';
+import { selectedApiBaseUrl, selectedS3Url } from './ServerConfig';
 
 export const API_BASE_URL = selectedApiBaseUrl;
 export const AWS_S3_BASE_URL = selectedS3Url;
 export const REFRESH_TOKEN_URL = '/v1/authentications/refresh-token';
-export const SIGN_IN_URL = '/v1/users/token';
+export const SIGN_IN_URL = '/v1/users/token/';
 export const SIGN_UP_URL = '/v1/users/sign-up/';
-export const SIGN_UP_VERIFY_URL = '/v1/users/sign-up';
+export const SIGN_UP_VERIFY_URL = '/v1/users/sign-up/';
+export const BATCH_LIST_URL = '/v1/core/public/batches?limit=200';
+export const FORGOT_PASSWORD_URL = '/v1/users/forgot-password/';
+export const PROFILE_URL = '/v1/profiles/personal/profile/';
+export const EXPERIENCES_URL = '/v1/profiles/personal/experiences/';
+export const COMMITTEE_URL = '/v1/committee/committee/';
+export const COMMITTEE_MEMBER_URL = '/v1/committee/committee-member/';
+export const ALL_MEMBERS_URL = '/v1/users/all-members/';
+export const OCCUPATIONS_URL = '/v1/core/public/occupations/';
+export const JOB_DEPARTMENTS_URL = '/v1/core/public/job-departments/';
+export const ATTACHMENT_UPLOAD_URL = '/v1/core/upload/';
+export const POST_CATEGORY_URL = '/v1/post/category/';
+export const POST_MANAGE_URL = '/v1/post/manage-post/';
+export const COMMENT_URL = '/v1/post/comment/';

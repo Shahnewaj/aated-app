@@ -1,26 +1,26 @@
-import {API_BASE_URL, REFRESH_TOKEN_URL} from './ApiEndpoints';
+import { API_BASE_URL, REFRESH_TOKEN_URL } from './ApiEndpoints';
 import {
   BaseQueryApi,
   createApi,
   fetchBaseQuery,
 } from '@reduxjs/toolkit/query/react';
-import type {RootState} from '../../store';
-import {ApiTags} from './ApiTags';
-import {Mutex} from 'async-mutex';
-import {appSetLogout, appSetUser} from '../../store/features/UserSlice';
+import type { RootState } from '../../store';
+import { ApiTags } from './ApiTags';
+import { Mutex } from 'async-mutex';
+import { appSetLogout, appSetUser } from '../../store/features/UserSlice';
 
 export const paginationConfig = {
-  serializeQueryArgs: ({queryArgs}: any) => {
-    const newQueryArgs = {...queryArgs};
+  serializeQueryArgs: ({ queryArgs }: any) => {
+    const newQueryArgs = { ...queryArgs };
     if (typeof newQueryArgs.offset === 'number') {
       delete newQueryArgs.offset;
     }
     return newQueryArgs;
   },
-  forceRefetch: ({currentArg, previousArg}: any) => {
+  forceRefetch: ({ currentArg, previousArg }: any) => {
     return currentArg?.offset !== previousArg?.offset;
   },
-  merge: (currentCache: any, newItems: any, {arg}: any) => {
+  merge: (currentCache: any, newItems: any, { arg }: any) => {
     if (Array.isArray(newItems?.data) && arg?.offset > 1) {
       const filteredItems = newItems?.data?.filter(
         (item: any) =>
@@ -40,7 +40,7 @@ export const paginationConfig = {
 
 const baseQuery = fetchBaseQuery({
   baseUrl: API_BASE_URL,
-  prepareHeaders: (headers, {getState}) => {
+  prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).user?.user?.accessToken;
 
     if (token) {
@@ -105,7 +105,7 @@ const baseQueryWithReauth = async (
 
   // 👇 Convert 404 errors into successful responses
   if (result.error?.status === 404) {
-    return {data: result.error.data}; // Pass the 404 response as data
+    return { data: result.error.data }; // Pass the 404 response as data
   }
 
   return result;

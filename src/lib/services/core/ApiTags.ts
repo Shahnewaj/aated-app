@@ -1,3 +1,9 @@
 export const ApiTags = {
-  GET_PROFILE: 'GET_PROFILE',
+  Profile: 'Profile',
+  Experience: 'Experience',
+  Committee: 'Committee',
+  Member: 'Member',
+  Core: 'Core',
+  Post: 'Post',
+  Comment: 'Comment',
 };

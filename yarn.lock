@@ -5941,6 +5941,11 @@ metro@0.83.3, metro@^0.83.3:
     ws "^7.5.10"
     yargs "^17.6.2"
 
+microdiff@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/microdiff/-/microdiff-1.5.0.tgz#d16219b223396f11ffcf441da26a43d3e6bd06f8"
+  integrity sha512-Drq+/THMvDdzRYrK0oxJmOKiC24ayUV8ahrt8l3oRK51PWt6gdtrIGrlIH3pT/lFh1z93FbAcidtsHcWbnRz8Q==
+
 micromatch@^4.0.4, micromatch@^4.0.8:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-4.0.8.tgz#d66fa18f3a47076789320b9b1af32bd86d9fa202"
@@ -6006,6 +6011,11 @@ minipass@^7.1.2:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/minipass/-/minipass-7.1.2.tgz#93a9626ce5e5e66bd4db86849e7515e92340a707"
   integrity sha512-qOOzS1cBTWYF4BH8fVePDBOO9iptMnGUEZwNc/cMWnTV2nVLZ7VoNWEPHkYczZA0pdoA7dl6e7FL659nX9S2aw==
+
+mitt@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/mitt/-/mitt-3.0.1.tgz#ea36cf0cc30403601ae074c8f77b7092cdab36d1"
+  integrity sha512-vKivATfr97l2/QBCYAkXYDbrIWPM2IIKEl7YPhjCvKlG3kE2gm+uBo6nEXK3M5/Ffh/FLpKExzOQ3JJoJGFKBw==
 
 mkdirp@^1.0.4:
   version "1.0.4"
@@ -6577,7 +6587,7 @@ react-native-fetch-api@^3.0.0:
   dependencies:
     p-defer "^3.0.0"
 
-react-native-gesture-handler@^2.30.0:
+react-native-gesture-handler@^2.28.0:
   version "2.30.0"
   resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.30.0.tgz#990c621fbeeefde853ececdcab7cbe1b621dbb8b"
   integrity sha512-5YsnKHGa0X9C8lb5oCnKm0fLUPM6CRduvUUw2Bav4RIj/C3HcFh4RIUnF8wgG6JQWCL1//gRx4v+LVWgcIQdGA==
@@ -6852,6 +6862,33 @@ react@19.2.0:
   version "19.2.0"
   resolved "https://registry.yarnpkg.com/react/-/react-19.2.0.tgz#d33dd1721698f4376ae57a54098cb47fc75d93a5"
   integrity sha512-tmbWg6W31tQLeB5cdIBOicJDJRR2KzXsV7uSK9iNfLWQ5bIZfxuPEHp7M8wiHyHnn0DD1i7w3Zmin0FtkrwoCQ==
+
+reactotron-core-client@2.9.9:
+  version "2.9.9"
+  resolved "https://registry.yarnpkg.com/reactotron-core-client/-/reactotron-core-client-2.9.9.tgz#93ac2122d215084502fd87bf56e8fde8fef07879"
+  integrity sha512-caI6ZWpfV/gNeCBhm6alxuCpOxYEFxg9FsgVaOXJWZeKjK2egjxkXcUEFWeS3b9mC6Kwi7Wuu79zfeGtkbdAYw==
+  dependencies:
+    reactotron-core-contract "0.3.2"
+
+reactotron-core-contract@0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/reactotron-core-contract/-/reactotron-core-contract-0.3.2.tgz#b88bb7b411a6247b02dae90234c5ea0755738acf"
+  integrity sha512-39ZNLfxxV7WEOszekIRg56F6VFZrQk7+Lei+8MccNESX3VbQzs1uex/GNesxk6CMTS6ytwqYIBAgLyc9WX/PaA==
+
+reactotron-react-native@^5.1.18:
+  version "5.1.18"
+  resolved "https://registry.yarnpkg.com/reactotron-react-native/-/reactotron-react-native-5.1.18.tgz#50e3645d1c9431b684f0a605923eb8beb4cba1b8"
+  integrity sha512-Nyb/w7tRQICtfvjAJSN6Q/3aRO8L6eTfEcWpDR/atUyoINkyzducMx6yXA+sz1mazxivY16N3VPkmQ1XohQAcg==
+  dependencies:
+    mitt "^3.0.1"
+    reactotron-core-client "2.9.9"
+
+reactotron-redux@^3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/reactotron-redux/-/reactotron-redux-3.2.1.tgz#3512f3d44d458e25ca65176c3d93243415bc8aa0"
+  integrity sha512-WxMVz1zBlzWplS3HJU1kDH1LBaTE71i/mMdyRTZZrAQq33+SKd7hva03pMbd6UJFaQeSCvey26a2SSWp5CLsWg==
+  dependencies:
+    microdiff "^1.5.0"
 
 readable-stream@^3.4.0:
   version "3.6.2"
