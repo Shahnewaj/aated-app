@@ -36,6 +36,9 @@ const MembersScreen = ({
     employment_status: '',
   });
 
+  const [page, setPage] = useState(1);
+  const [allMembers, setAllMembers] = useState<any[]>([]);
+
   // API Calls
   const {
     data: membersResponse,
@@ -47,14 +50,37 @@ const MembersScreen = ({
     batch: filters.batch,
     occupation_type: filters.occupation_type,
     employment_status: filters.employment_status,
+    page: page,
   });
 
   const { data: batchesResponse } = useGetBatchesQuery({});
   const { data: occupationsResponse } = useGetOccupationsQuery({});
 
-  const members = membersResponse?.data || [];
   const batches = batchesResponse?.data || [];
   const occupations = occupationsResponse?.data || [];
+
+  // Reset when filters change
+  React.useEffect(() => {
+    setPage(1);
+    setAllMembers([]);
+  }, [search, filters]);
+
+  // Accumulate members
+  React.useEffect(() => {
+    if (membersResponse?.data) {
+      if (page === 1) {
+        setAllMembers(membersResponse.data);
+      } else {
+        setAllMembers(prev => [...prev, ...membersResponse.data]);
+      }
+    }
+  }, [membersResponse, page]);
+
+  const loadMore = () => {
+    if (membersResponse?.meta_data?.next && !isFetching) {
+      setPage(prev => prev + 1);
+    }
+  };
 
   const debouncedSearch = useCallback(
     _.debounce((text: string) => setSearch(text), 500),
@@ -146,25 +172,42 @@ const MembersScreen = ({
         </View>
       </LinearGradient>
 
-      {isLoading ? (
+      {isLoading && page === 1 ? (
         <View style={styles.center}>
           <ActivityIndicator size="large" color="#4F63FF" />
         </View>
       ) : (
         <FlatList
-          data={members}
-          keyExtractor={item => item.id.toString()}
+          data={allMembers}
+          keyExtractor={(item, index) => `${item.id}-${index}`}
           renderItem={renderMember}
           contentContainerStyle={styles.listContent}
           showsVerticalScrollIndicator={false}
           ListEmptyComponent={
-            <View style={styles.emptyContainer}>
-              <Ionicons name="people-outline" size={60} color="#1E2347" />
-              <Text style={styles.emptyText}>No members found.</Text>
-            </View>
+            !isFetching ? (
+              <View style={styles.emptyContainer}>
+                <Ionicons name="people-outline" size={60} color="#1E2347" />
+                <Text style={styles.emptyText}>No members found.</Text>
+              </View>
+            ) : null
           }
-          refreshing={isFetching && !isLoading}
-          onRefresh={refetch}
+          refreshing={isFetching && page === 1}
+          onRefresh={() => {
+            setPage(1);
+            setAllMembers([]);
+            refetch();
+          }}
+          onEndReached={loadMore}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={
+            isFetching && page > 1 ? (
+              <ActivityIndicator
+                size="small"
+                color="#4F63FF"
+                style={{ marginVertical: 20 }}
+              />
+            ) : null
+          }
         />
       )}
 

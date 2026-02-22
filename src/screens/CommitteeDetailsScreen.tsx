@@ -15,6 +15,7 @@ import { useGetCommitteeMembersQuery } from '../lib/services/CommitteeApi';
 
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
+import { RouteMap } from '../navigation/RouteMap';
 
 const CommitteeDetailsScreen = ({
   navigation,
@@ -28,7 +29,12 @@ const CommitteeDetailsScreen = ({
   const members = membersResponse?.data || [];
 
   const renderItem = ({ item }: { item: any }) => (
-    <View style={styles.memberCard}>
+    <TouchableOpacity
+      style={styles.memberCard}
+      onPress={() =>
+        navigation.navigate(RouteMap.MemberDetails, { id: item.member?.id })
+      }
+    >
       <View style={styles.memberInner}>
         <View style={styles.avatarWrapper}>
           {item.member?.profile_pic ? (
@@ -58,8 +64,9 @@ const CommitteeDetailsScreen = ({
             </Text>
           </View>
         </View>
+        <Ionicons name="chevron-forward" size={18} color="#5A6080" />
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   return (
