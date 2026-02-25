@@ -281,7 +281,7 @@ const styles = StyleSheet.create({
   categoryText: { color: '#8892B0', fontSize: 13, fontWeight: '700' },
   categoryTextSelected: { color: '#fff' },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  feedContent: { padding: 15 },
+  feedContent: { padding: 15, paddingBottom: 150 },
   postCard: {
     backgroundColor: '#161B3A',
     borderRadius: 20,

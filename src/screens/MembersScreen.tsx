@@ -357,7 +357,7 @@ const styles = StyleSheet.create({
   },
   filterBtnActive: { borderColor: '#4F63FF', backgroundColor: '#4F63FF20' },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
-  listContent: { padding: 20 },
+  listContent: { padding: 20, paddingBottom: 150 },
   memberCard: {
     backgroundColor: '#161B3A',
     borderRadius: 20,
