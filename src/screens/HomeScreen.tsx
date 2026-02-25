@@ -22,6 +22,7 @@ import {
 import { RouteMap } from '../navigation/RouteMap';
 import { useAppSelector } from '../lib/store/hooks';
 import moment from 'moment';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const HomeScreen = ({ navigation }: any) => {
   const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
@@ -37,6 +38,7 @@ const HomeScreen = ({ navigation }: any) => {
     category: selectedCategory || undefined,
   });
   const [deletePost] = useDeletePostMutation();
+  const insets = useSafeAreaInsets();
 
   const posts = postsResponse?.data || [];
   const categories = categoriesResponse?.data || [];
@@ -156,7 +158,10 @@ const HomeScreen = ({ navigation }: any) => {
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#0A0E27" />
 
-      <LinearGradient colors={['#0A0E27', '#111636']} style={styles.header}>
+      <LinearGradient
+        colors={['#0A0E27', '#111636']}
+        style={[styles.header, { paddingTop: insets.top + 20 }]}
+      >
         <View style={styles.headerTop}>
           <Text style={styles.headerTitle}>Alumni Feed</Text>
           <TouchableOpacity

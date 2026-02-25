@@ -483,9 +483,7 @@ const SignupScreen = ({ navigation }: any) => {
             </TouchableOpacity>
           </View>
 
-          <Text style={styles.footer}>
-            Alumni Association of DUET — Gazipur
-          </Text>
+          <Text style={styles.footer}>AATED</Text>
         </ScrollView>
       </KeyboardAvoidingView>
     </View>

@@ -14,6 +14,7 @@ import { useGetCommitteesQuery } from '../lib/services/CommitteeApi';
 import { RouteMap } from '../navigation/RouteMap';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const CommitteeScreen = ({
   navigation,
@@ -22,6 +23,7 @@ const CommitteeScreen = ({
 }) => {
   const { data: committeesResponse, isLoading } = useGetCommitteesQuery({});
   const committees = committeesResponse?.data || [];
+  const insets = useSafeAreaInsets();
 
   const renderItem = ({ item }: { item: any }) => (
     <TouchableOpacity
@@ -72,7 +74,10 @@ const CommitteeScreen = ({
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#0A0E27" />
-      <LinearGradient colors={['#0A0E27', '#111636']} style={styles.header}>
+      <LinearGradient
+        colors={['#0A0E27', '#111636']}
+        style={[styles.header, { paddingTop: insets.top + 20 }]}
+      >
         <Text style={styles.headerTitle}>Committees</Text>
       </LinearGradient>
 
@@ -102,7 +107,7 @@ const CommitteeScreen = ({
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: '#0A0E27' },
   header: {
-    paddingTop: 60,
+    paddingTop: 30,
     paddingBottom: 25,
     paddingHorizontal: 20,
     alignItems: 'center',

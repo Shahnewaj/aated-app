@@ -25,12 +25,14 @@ import {
 import { useAppSelector } from '../lib/store/hooks';
 import moment from 'moment';
 import Toast from 'react-native-simple-toast';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const PostDetailsScreen = ({ navigation, route }: any) => {
   const { id } = route.params;
   const { user } = useAppSelector(state => state.user);
   const [commentText, setCommentText] = useState('');
   const [editingCommentId, setEditingCommentId] = useState<number | null>(null);
+  const insets = useSafeAreaInsets();
 
   const { data: postResponse, isLoading } = useGetPostDetailsQuery(id);
   const [createComment, { isLoading: isCommenting }] =
@@ -96,7 +98,10 @@ const PostDetailsScreen = ({ navigation, route }: any) => {
       behavior={Platform.OS === 'ios' ? 'padding' : undefined}
     >
       <StatusBar barStyle="light-content" backgroundColor="#0A0E27" />
-      <LinearGradient colors={['#0A0E27', '#111636']} style={styles.header}>
+      <LinearGradient
+        colors={['#0A0E27', '#111636']}
+        style={[styles.header, { paddingTop: insets.top + 20 }]}
+      >
         <TouchableOpacity
           style={styles.backBtn}
           onPress={() => navigation.goBack()}

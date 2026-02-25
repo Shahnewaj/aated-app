@@ -19,6 +19,7 @@ import {
   useGetCategoriesQuery,
 } from '../lib/services/PostApi';
 import Toast from 'react-native-simple-toast';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const AddEditPostScreen = ({ navigation, route }: any) => {
   const post = route.params?.post;
@@ -36,6 +37,7 @@ const AddEditPostScreen = ({ navigation, route }: any) => {
   const { data: categoriesResponse } = useGetCategoriesQuery({});
   const [createPost, { isLoading: isCreating }] = useCreatePostMutation();
   const [updatePost, { isLoading: isUpdating }] = useUpdatePostMutation();
+  const insets = useSafeAreaInsets();
 
   const categories = categoriesResponse?.data || [];
 
@@ -73,7 +75,10 @@ const AddEditPostScreen = ({ navigation, route }: any) => {
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#0A0E27" />
-      <LinearGradient colors={['#0A0E27', '#111636']} style={styles.header}>
+      <LinearGradient
+        colors={['#0A0E27', '#111636']}
+        style={[styles.header, { paddingTop: insets.top + 20 }]}
+      >
         <TouchableOpacity
           style={styles.backBtn}
           onPress={() => navigation.goBack()}

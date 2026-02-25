@@ -16,6 +16,7 @@ import { useGetCommitteeMembersQuery } from '../lib/services/CommitteeApi';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { RouteMap } from '../navigation/RouteMap';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const CommitteeDetailsScreen = ({
   navigation,
@@ -27,6 +28,7 @@ const CommitteeDetailsScreen = ({
   const { id, name } = route.params || {};
   const { data: membersResponse, isLoading } = useGetCommitteeMembersQuery(id);
   const members = membersResponse?.data || [];
+  const insets = useSafeAreaInsets();
 
   const renderItem = ({ item }: { item: any }) => (
     <TouchableOpacity
@@ -72,7 +74,10 @@ const CommitteeDetailsScreen = ({
   return (
     <View style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#0A0E27" />
-      <LinearGradient colors={['#0A0E27', '#111636']} style={styles.header}>
+      <LinearGradient
+        colors={['#0A0E27', '#111636']}
+        style={[styles.header, { paddingTop: insets.top + 20 }]}
+      >
         <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.backBtn}
